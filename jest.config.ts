@@ -8,4 +8,11 @@ module.exports = {
             tsConfig: 'tsconfig.json',
         },
     },
+    "collectCoverage": true,
+    "collectCoverageFrom": ["./src/**"],
+    "coverageThreshold": {
+        "global": {
+            "lines": 90
+        }
+    }
 };
