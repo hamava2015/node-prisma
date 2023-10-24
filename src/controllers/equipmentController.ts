@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { addEquipment, getEquipments, checkoutEquipment } from '../services/equipmentService';
+import { addEquipment, getEquipments, checkoutEquipment, returnEquipment } from '../services/equipmentService';
 import { IEquipmentRequestBody } from '../interfaces/equipment';
 
 export const add = async (req: any, res: Response) => {
@@ -31,5 +31,28 @@ export const checkout = async (req: any, res: Response) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Failed to check out equipment' });
+    }
+};
+
+export const ret = async (req: any, res: Response) => {
+    const { equipmentId, returnLocation } = req.body;
+    const { user_id } = req.user;
+
+    console.log('return location: ', returnLocation);
+
+    if (!returnLocation) {
+        return res.status(400).json({ error: 'Return location required.' });
+    }
+
+    const result = await returnEquipment(
+        equipmentId,
+        returnLocation,
+        user_id
+    );
+
+    if (result.status === 200) {
+        res.json({ message: result.message });
+    } else {
+        res.status(result.status).json({ error: result.error });
     }
 };

@@ -109,3 +109,16 @@ npm i --save-dev @types/jsonwebtoken
 ```
 npm install --save-dev jest @types/jest ts-jest supertest @types/supertest
 ```
+
+# Getting Started
+
+- Run the app
+```
+npm run dev
+```
+- Open the included Postman collection to invoke endpoints
+
+- Run tests
+```
+npm run test
+```
