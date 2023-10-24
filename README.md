@@ -58,4 +58,6 @@ npm install express body-parser typescript
 npm install --save-dev @types/node @types/express @types/body-parser
 npm install --save-dev nodemon
 npx tsc --init
+npm i dotenv 
+npm i --save-dev @types/dotenv
 ```
