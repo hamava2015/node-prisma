@@ -89,3 +89,10 @@ npx prisma migrate dev --name init
 ```
 npx prisma studio
 ```
+
+## Authentication
+
+```
+npm i bcryptjs
+npm i --save-dev @types/bcryptjs
+```
