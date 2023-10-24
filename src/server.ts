@@ -1,7 +1,9 @@
 import express, { Request, Response } from 'express';
-import logging from './src/config/logging';
+import logging from './config/logging';
 import bodyParser from 'body-parser';
-import config from './src/config/config';
+import config from './config/config';
+import healthcheckRoutes from './routes/healthcheck';
+
 
 const NAMESPACE = 'Server';
 
@@ -34,6 +36,10 @@ app.use((req, res, next) => {
 
     next();
 });
+
+/** Routes go here */
+app.use('/healthcheck', healthcheckRoutes);
+
 
 /** Error handling */
 app.use((req, res, next) => {

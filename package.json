@@ -4,7 +4,7 @@
   "description": "- We would like to build Equipment Tracking module that allows our customers to allocate construction equipment for their jobs. Construction equipment examples: truck, forklift, crane, etc. Tracking the use of equipment in hours/days/weeks is essential to allow our customers to bill their clients for use of equipment.",
   "main": "server.ts",
   "scripts": {
-    "dev": "nodemon server.ts",
+    "dev": "nodemon src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
