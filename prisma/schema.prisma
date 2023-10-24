@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  user_id       Int            @id @default(autoincrement())
+  username      String         @unique
+  password      String
+  name          String?
+  equipmentLogs EquipmentLog[]
+}
+
+model Equipment {
+  equipment_id  Int            @id @default(autoincrement())
+  name          String
+  type          String
+  location      String
+  equipmentLogs EquipmentLog[]
+}
+
+model Job {
+  job_id        Int            @id @default(autoincrement())
+  job_name      String
+  equipmentLogs EquipmentLog[]
+}
+
+model EquipmentLog {
+  log_id                Int       @id @default(autoincrement())
+  checkout_date         DateTime
+  return_date           DateTime?
+  return_location       String?
+  requested_return_date DateTime?
+  status                String
+  user_id               Int
+  equipment_id          Int
+  job_id                Int
+
+  User      User      @relation(fields: [user_id], references: [user_id])
+  Equipment Equipment @relation(fields: [equipment_id], references: [equipment_id])
+  Job       Job       @relation(fields: [job_id], references: [job_id])
+
+  @@unique([user_id, equipment_id, job_id, checkout_date], name: "unique_log_entry")
+}

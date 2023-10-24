@@ -61,3 +61,31 @@ npx tsc --init
 npm i dotenv 
 npm i --save-dev @types/dotenv
 ```
+
+## Create Supabase database
+
+## Setup Prisma
+
+```
+npm install prisma --save-dev
+npx prisma init --datasource-provider postgresql
+npm i @prisma/client
+```
+
+- Add model into Prisma schema.
+- Generate the Prisma client
+```
+npx prisma generate
+```
+
+- Migrate
+
+```
+npx prisma migrate dev --name init
+```
+
+- Prisma Studio
+
+```
+npx prisma studio
+```
