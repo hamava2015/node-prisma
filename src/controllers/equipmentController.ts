@@ -14,7 +14,7 @@ export const add = async (req: any, res: Response) => {
 
 export const get = async (req: any, res: Response) => {
     try {
-        const { type, location } = req.query;
+        const { type, location } = req.body;
         const equipmentList = await getEquipments(type, location);
         res.json(equipmentList);
     } catch (error) {
