@@ -1,13 +1,13 @@
 import express from 'express';
 import auth from '../middleware/auth';
 
-import { addEquipment, getEquipments, checkoutEquipment } from '../controllers/equipment';
+import { add, get, checkout } from '../controllers/equipmentController';
 
 
 const router = express.Router();
 
-router.get('/list', auth, getEquipments);
-router.post('/add', auth, addEquipment);
-router.post('/checkout', auth, checkoutEquipment);
+router.get('/list', auth, get);
+router.post('/add', auth, add);
+router.post('/checkout', auth, checkout);
 
 export default router;

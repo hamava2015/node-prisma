@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { addEquipment, getEquipments, checkoutEquipment } from '../services/equipmentService';
 import { IEquipmentRequestBody } from '../interfaces/equipment';
 
-export const addEquipmentController = async (req: any, res: Response) => {
+export const add = async (req: any, res: Response) => {
     try {
         const data = req.body as IEquipmentRequestBody;
         const equipment = await addEquipment(data, req.user);
@@ -12,7 +12,7 @@ export const addEquipmentController = async (req: any, res: Response) => {
     }
 };
 
-export const getEquipmentsController = async (req: any, res: Response) => {
+export const get = async (req: any, res: Response) => {
     try {
         const { type, location } = req.query;
         const equipmentList = await getEquipments(type, location);
@@ -23,7 +23,7 @@ export const getEquipmentsController = async (req: any, res: Response) => {
     }
 };
 
-export const checkoutEquipmentController = async (req: any, res: Response) => {
+export const checkout = async (req: any, res: Response) => {
     try {
         const equipmentId = req.body.equipmentId;
         const result = await checkoutEquipment(equipmentId, req.user);
