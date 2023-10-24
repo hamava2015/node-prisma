@@ -55,6 +55,7 @@ For the equipment tracking project, a SQL database might be more suitable if you
 ```
 npm init -y
 npm install express body-parser typescript
+npm install --save-dev ts-node
 npm install --save-dev @types/node @types/express @types/body-parser
 npm install --save-dev nodemon
 npx tsc --init
@@ -102,4 +103,9 @@ npm i --save-dev @types/bcryptjs
 ```
 npm i jsonwebtoken
 npm i --save-dev @types/jsonwebtoken
+```
+
+## Jest
+```
+npm install --save-dev jest @types/jest ts-jest supertest @types/supertest
 ```
