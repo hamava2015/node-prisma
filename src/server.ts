@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import config from './config/config';
 import healthcheckRoutes from './routes/healthcheck';
 import userRoutes from './routes/user';
+import equipmentRoutes from './routes/equipment';
 
 
 const NAMESPACE = 'Server';
@@ -41,6 +42,7 @@ app.use((req, res, next) => {
 /** Routes go here */
 app.use('/healthcheck', healthcheckRoutes);
 app.use('/users', userRoutes);
+app.use('', equipmentRoutes);
 
 
 /** Error handling */
