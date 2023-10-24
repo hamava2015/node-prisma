@@ -107,5 +107,5 @@ npm i --save-dev @types/jsonwebtoken
 
 ## Jest
 ```
-npm install --save-dev jest @types/jest ts-jest
+npm install --save-dev jest @types/jest ts-jest supertest @types/supertest
 ```
