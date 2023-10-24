@@ -42,7 +42,8 @@ app.use((req, res, next) => {
 /** Routes go here */
 app.use('/healthcheck', healthcheckRoutes);
 app.use('/users', userRoutes);
-app.use('', equipmentRoutes);
+app.use('/equipments', equipmentRoutes);
+
 
 
 /** Error handling */
