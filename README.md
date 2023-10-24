@@ -96,3 +96,10 @@ npx prisma studio
 npm i bcryptjs
 npm i --save-dev @types/bcryptjs
 ```
+
+## JWT
+
+```
+npm i jsonwebtoken
+npm i --save-dev @types/jsonwebtoken
+```

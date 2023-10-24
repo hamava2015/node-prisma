@@ -1,6 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
 import { signup, login } from '../services/userService';
-import { PrismaClient, Prisma, Equipment } from '@prisma/client'
+import { PrismaClient, Prisma, Equipment } from '@prisma/client';
+import { GetToken } from '../utils/tokenUtils';
+import logging from '../config/logging';
+
 
 const NAMESPACE = 'User';
 const prisma = new PrismaClient();
@@ -24,7 +27,9 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
         const user = await login(username, password);
         if (user) {
             const { password, ...userWithoutPassword } = user;
-            res.status(200).json({ message: 'Login successful', userWithoutPassword });
+            const { user_id, username, name } = userWithoutPassword;
+            const token = GetToken({ user_id, username });
+            return res.status(200).json({ message: 'Login successful', token, user_id, username, name });
         } else {
             res.status(401).json({ message: 'Invalid Credentials' });
         }
@@ -33,4 +38,14 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
-export default { signupUser, loginUser };
+const invalidateToken = (req: Request, res: Response, next: NextFunction) => {
+    logging.info(NAMESPACE, 'Token validated, user authorized.');
+
+    // we are not saving tokens. So, this is dummy. We clear the token in user side (e.g. Postman)
+    return res.status(200).json({
+        message: 'Token invalidated'
+    });
+};
+
+
+export default { signupUser, loginUser, invalidateToken };
