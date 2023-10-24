@@ -122,3 +122,59 @@ export const checkoutEquipment = async (equipmentId: number, user: any) => {
         throw error;
     }
 };
+
+
+export async function returnEquipment(
+    equipmentId: number,
+    returnLocation: string,
+    userId: number
+) {
+    try {
+        const equipment = await prisma.equipment.findUnique({
+            where: { equipment_id: equipmentId },
+        });
+
+        if (!equipment) {
+            return { status: 404, error: 'Equipment not found' };
+        }
+
+        const lastLogEntry = await prisma.equipmentLog.findFirst({
+            where: {
+                equipment_id: equipmentId,
+            },
+            orderBy: {
+                checkout_date: 'desc',
+            },
+        });
+
+        if (!lastLogEntry) {
+            return { status: 500, error: 'Internal error' };
+        }
+
+        if (lastLogEntry.status === 'CheckedOut') {
+            await prisma.equipmentLog.create({
+                data: {
+                    checkout_date: new Date(),
+                    return_date: new Date(),
+                    return_location: returnLocation,
+                    status: 'Available',
+                    user_id: userId,
+                    equipment_id: equipmentId,
+                    job_id: lastLogEntry.job_id,
+                },
+            });
+
+            await prisma.equipment.update({
+                where: { equipment_id: equipmentId },
+                data: { location: returnLocation },
+            });
+
+            return { status: 200, message: 'Equipment returned successfully' };
+        } else {
+            return { status: 400, error: 'Equipment is not checked out' };
+        }
+    } catch (error) {
+        console.error(error);
+        return { status: 500, error: 'Failed to return equipment' };
+    }
+}
