@@ -50,3 +50,14 @@ For the equipment tracking project, a SQL database might be more suitable if you
   - requested_return_date (date when equipment is requested for return, optional)
   - status (e.g., checked out, available, requested)
 
+## Setup Node Project with TypeScript
+
+```
+npm init -y
+npm install express body-parser typescript
+npm install --save-dev @types/node @types/express @types/body-parser
+npm install --save-dev nodemon
+npx tsc --init
+npm i dotenv 
+npm i --save-dev @types/dotenv
+```
