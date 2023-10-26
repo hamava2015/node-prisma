@@ -130,6 +130,10 @@ docker compose up
 
 ## Option 1 - local
 - Set the environment variables for `DATABASE_URL` and `SERVER_PORT`
+```
+DATABASE_URL="postgresql://postgres:<DB_PASSWORD>@db.vcihvoifiuxwcokrlxqr.supabase.co:5432/postgres"
+```
+
 - Run the app
 ```
 npm run dev
