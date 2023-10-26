@@ -65,6 +65,8 @@ npm i --save-dev @types/dotenv
 
 ## Create Supabase database
 
+Create a project in Supabase and use the database url in `.env` file later in the project.
+
 ## Setup Prisma
 
 ```
@@ -91,6 +93,11 @@ npx prisma migrate dev --name init
 npx prisma studio
 ```
 
+- Visualize Prisma schema
+```
+https://prismaliser.app/
+```
+
 ## Authentication
 
 ```
@@ -110,13 +117,42 @@ npm i --save-dev @types/jsonwebtoken
 npm install --save-dev jest @types/jest ts-jest supertest @types/supertest
 ```
 
+## Docker
+- Create Dockerfile
+- Create container for database
+- Run Docker Desktop
+- Run the command below
+```
+docker compose up -d
+```
+
+Once docker is up, run the command below:
+```
+docker-compose exec server /bin/sh
+npx prisma migrate dev --name init
+```
+
 # Getting Started
 
+## Option 1 - local
+- Set the environment variables for `DATABASE_URL` and `SERVER_PORT`
 - Run the app
 ```
 npm run dev
 ```
+
+## Option 2 - Docker
+- Set the environment varaible `SERVER_PORT` to 5000
+```
+docker compose up -d
+docker-compose exec server /bin/sh
+npx prisma migrate dev --name init
+```
+
+
 - Open the included Postman collection to invoke endpoints
+  - Set `BASE_URL` to `http://localhost:<SERVER_PORT>`
+
 
 - Run tests
 ```
