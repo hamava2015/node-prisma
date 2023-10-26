@@ -1,3 +1,5 @@
+# Backend With NodeJS, TypeScript, Prisma, and PostgreSQL
+
 ## Project Scope
 
 - We would like to build Equipment Tracking module that allows our customers to allocate construction equipment for their jobs. Construction equipment examples: truck, forklift, crane, etc. Tracking the use of equipment in hours/days/weeks is essential to allow our customers to bill their clients for use of equipment.
@@ -76,6 +78,59 @@ npm i @prisma/client
 ```
 
 - Add model into Prisma schema.
+
+```prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  user_id       Int            @id @default(autoincrement())
+  username      String         @unique
+  password      String
+  name          String?
+  equipmentLogs EquipmentLog[]
+}
+
+model Equipment {
+  equipment_id  Int            @id @default(autoincrement())
+  name          String
+  type          String
+  location      String
+  equipmentLogs EquipmentLog[]
+}
+
+model Job {
+  job_id        Int            @id @default(autoincrement())
+  job_name      String
+  equipmentLogs EquipmentLog[]
+}
+
+model EquipmentLog {
+  log_id                Int       @id @default(autoincrement())
+  checkout_date         DateTime
+  return_date           DateTime?
+  return_location       String?
+  requested_return_date DateTime?
+  status                String
+  user_id               Int
+  equipment_id          Int
+  job_id                Int
+
+  User      User      @relation(fields: [user_id], references: [user_id])
+  Equipment Equipment @relation(fields: [equipment_id], references: [equipment_id])
+  Job       Job       @relation(fields: [job_id], references: [job_id])
+
+  @@unique([user_id, equipment_id, job_id, checkout_date], name: "unique_log_entry")
+}
+
+```
+  
 - Generate the Prisma client
 ```
 npx prisma generate
@@ -92,11 +147,15 @@ npx prisma migrate dev --name init
 ```
 npx prisma studio
 ```
+![prisma_studio](https://github.com/afallahi/node-prisma/assets/73287428/53630241-77d0-4dc1-916e-fc9d7342cee9)
+
 
 - Visualize Prisma schema
 ```
 https://prismaliser.app/
 ```
+![schema](https://github.com/afallahi/node-prisma/assets/73287428/608e4dbe-818f-4d01-a8f6-e5df453a3c1d)
+
 
 ## Authentication
 
@@ -153,3 +212,16 @@ docker compose up -d
 ```
 npm run test
 ```
+
+![jest](https://github.com/afallahi/node-prisma/assets/73287428/7aa8c56e-7d31-4b76-bbda-5aa2ec7fd892)
+
+
+- Postman
+  
+![1 login](https://github.com/afallahi/node-prisma/assets/73287428/1251bc66-337e-4dbf-86f7-563ef2648f93)
+![2 list](https://github.com/afallahi/node-prisma/assets/73287428/59dc87c1-5e19-40c2-bde7-95964c6099b1)
+![3 add](https://github.com/afallahi/node-prisma/assets/73287428/4643396f-4b47-4039-bc7d-adc73316fda1)
+![4 filter](https://github.com/afallahi/node-prisma/assets/73287428/4ca1622a-5780-4d77-8a0d-755205061446)
+![5 checkout](https://github.com/afallahi/node-prisma/assets/73287428/d2575579-58bf-4584-be32-154c78eb72f6)
+![6 return](https://github.com/afallahi/node-prisma/assets/73287428/e7bbedee-31fe-455c-a98d-efd71abb7a74)
+
