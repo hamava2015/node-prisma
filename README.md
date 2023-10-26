@@ -123,13 +123,7 @@ npm install --save-dev jest @types/jest ts-jest supertest @types/supertest
 - Run Docker Desktop
 - Run the command below
 ```
-docker compose up -d
-```
-
-Once docker is up, run the command below:
-```
-docker-compose exec server /bin/sh
-npx prisma migrate dev --name init
+docker compose up
 ```
 
 # Getting Started
@@ -142,13 +136,10 @@ npm run dev
 ```
 
 ## Option 2 - Docker
-- Set the environment varaible `SERVER_PORT` to 5000
+- Set the environment varaible `SERVER_PORT` to 3000
 ```
 docker compose up -d
-docker-compose exec server /bin/sh
-npx prisma migrate dev --name init
 ```
-
 
 - Open the included Postman collection to invoke endpoints
   - Set `BASE_URL` to `http://localhost:<SERVER_PORT>`

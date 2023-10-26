@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:alpine AS builder
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -13,9 +13,6 @@ RUN npm install
 COPY . .
 
 # Expose the port that your Node.js application will run on
-EXPOSE 5000
+EXPOSE 3000
 
-# Prisma
-RUN npx prisma generate
-
-CMD [ "npm", "run", "dev" ]
+CMD [ "npm", "run", "start:migrate" ]
