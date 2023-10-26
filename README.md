@@ -1,3 +1,18 @@
+<div align="center">
+	<a><img width="150" src="https://user-images.githubusercontent.com/25181517/183568594-85e280a7-0d7e-4d1a-9028-c8c2209e073c.png" alt="Node.js" title="Node.js"/></a>
+</div>
+
+<p align="center">
+	<a><img width="60" src="https://user-images.githubusercontent.com/25181517/183890598-19a0ac2d-e88a-4005-a8df-1ee36782fde1.png" alt="TypeScript" title="TypeScript"/></a>
+	<a><img width="60" src="https://user-images.githubusercontent.com/25181517/121401671-49102800-c959-11eb-9f6f-74d49a5e1774.png" alt="npm" title="npm"/></a>
+	<a><img width="60" src="https://user-images.githubusercontent.com/25181517/117208740-bfb78400-adf5-11eb-97bb-09072b6bedfc.png" alt="PostgreSQL" title="PostgreSQL"/></a>
+	<a><img width="60" src="https://user-images.githubusercontent.com/25181517/192109061-e138ca71-337c-4019-8d42-4792fdaa7128.png" alt="Postman" /></a>
+  <a><img width="60" src="https://user-images.githubusercontent.com/25181517/187955005-f4ca6f1a-e727-497b-b81b-93fb9726268e.png" alt="Jest"/></a>
+  <a><img width="60" src="https://user-images.githubusercontent.com/25181517/117207330-263ba280-adf4-11eb-9b97-0ac5b40bc3be.png" alt="Docker"/></a>
+	
+</p>
+
+
 # Backend With NodeJS, TypeScript, Prisma, and PostgreSQL
 
 ## Project Scope
@@ -51,6 +66,17 @@ For the equipment tracking project, a SQL database might be more suitable if you
   - return_location (location where equipment was returned)
   - requested_return_date (date when equipment is requested for return, optional)
   - status (e.g., checked out, available, requested)
+
+## tech Stack
+- Node.js
+- Typescript
+- Prisma
+- Supabase
+- PostgreSQL
+- REST API
+- Docker
+- Jest
+
 
 ## Setup Node Project with TypeScript
 
