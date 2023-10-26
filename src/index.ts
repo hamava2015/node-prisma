@@ -7,7 +7,7 @@ import userRoutes from './routes/user';
 import equipmentRoutes from './routes/equipment';
 
 
-const NAMESPACE = 'Server';
+const NAMESPACE = 'Index';
 
 /** middleware setup */
 
@@ -59,8 +59,8 @@ app.use((req, res, next) => {
 
 app.get('/', async (req: Request, res: Response) => {
 
-    //res.send(`Server is running on http://localhost:${config.server.port}`);
-    res.send("hello")
+    res.send(`Server is running on http://localhost:${config.server.port}`);
+    //res.send("hello")
 
 });
 
