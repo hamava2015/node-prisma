@@ -5,7 +5,8 @@
   "main": "server.ts",
   "scripts": {
     "dev": "nodemon src/server.ts",
-    "test": "jest --forceExit --detectOpenHandles  --watchAll --maxWorkers=1"
+    "test": "jest --forceExit --detectOpenHandles  --watchAll --maxWorkers=1",
+    "start:migrate": "prisma migrate deploy && npm run dev"
   },
   "keywords": [],
   "author": "",
